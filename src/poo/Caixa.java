@@ -11,9 +11,9 @@ import java.util.Scanner;
 
             // Exibir lista de produtos
             System.out.println("Lista de Produtos Disponíveis:");
-            System.out.println("1. " + produto1.getNome());
-            System.out.println("2. " + produto2.getNome());
-            System.out.println("3. " + produto3.getNome());
+            System.out.println("1. " + produto1.nome());
+            System.out.println("2. " + produto2.nome());
+            System.out.println("3. " + produto3.nome());
 
             // Inicializar variáveis para quantidade e valor total
             int quantidadeTotal = 0;
@@ -36,21 +36,15 @@ import java.util.Scanner;
                 int quantidade = scanner.nextInt();
 
                 // Atualizar a quantidade total e o valor total
-                Produto produtoEscolhido = null;
-                switch (escolha) {
-                    case 1:
-                        produtoEscolhido = produto1;
-                        break;
-                    case 2:
-                        produtoEscolhido = produto2;
-                        break;
-                    case 3:
-                        produtoEscolhido = produto3;
-                        break;
-                }
+                Produto produtoEscolhido = switch (escolha) {
+                    case 1 -> produto1;
+                    case 2 -> produto2;
+                    case 3 -> produto3;
+                    default -> null;
+                };
 
                 quantidadeTotal += quantidade;
-                valorTotal += produtoEscolhido.getPreco() * quantidade;
+                valorTotal += produtoEscolhido.preco() * quantidade;
             }
 
             // Exibir o resumo da compra
